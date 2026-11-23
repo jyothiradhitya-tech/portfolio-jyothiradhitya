@@ -76,7 +76,7 @@ const initialCertificates = [
     type: "AI/ML Internship Specialization",
     date: "2024",
     skills: ["Automated Data Pipelines", "Feature Scaling", "Supervised ML", "Model Evaluation"],
-    fileUrl: ""
+    fileUrl: "/certificates/smartbridge-aiml.pdf"
   },
   {
     id: "vaultsphere",
@@ -85,7 +85,7 @@ const initialCertificates = [
     type: "Web & API Apprenticeship Credential",
     date: "2024",
     skills: ["RESTful APIs", "PHP", "JavaScript", "MySQL", "Database Query Optimization"],
-    fileUrl: ""
+    fileUrl: "/certificates/vaultsphere-fullstack.pdf"
   },
   {
     id: "udemy-python",
@@ -485,7 +485,19 @@ function App() {
 
   const [certificates, setCertificates] = useState(() => {
     const saved = localStorage.getItem("jyothi_certificates");
-    return saved ? JSON.parse(saved) : initialCertificates;
+    if (!saved) return initialCertificates;
+    try {
+      const parsed = JSON.parse(saved);
+      return initialCertificates.map((init) => {
+        const found = parsed.find((c) => c.id === init.id);
+        return {
+          ...init,
+          fileUrl: (found && found.fileUrl) ? found.fileUrl : init.fileUrl
+        };
+      });
+    } catch {
+      return initialCertificates;
+    }
   });
 
   const [resumeData, setResumeData] = useState(() => {
@@ -790,9 +802,11 @@ function App() {
                 <Linkedin size={18} />
               </a>
               <a
-                href={`mailto:${profile.email}`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent("Job Opportunity - AI & ML Engineer")}`}
+                target="_blank"
+                rel="noreferrer noopener"
                 className="email-pill-badge"
-                title="Send email directly"
+                title="Compose directly in Gmail"
               >
                 <Mail size={15} />
                 <span>{profile.email}</span>
@@ -1283,9 +1297,11 @@ function App() {
             <div className="contact-actions">
               <a
                 className="button button-primary"
-                href={`mailto:${profile.email}?subject=Job%20Opportunity%20-%20AI%20Engineer`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent("Job Opportunity - AI & ML Engineer")}&body=${encodeURIComponent("Hi Jyothi,\n\nI reviewed your portfolio and would like to connect with you regarding...")}`}
+                target="_blank"
+                rel="noreferrer noopener"
               >
-                Send me an email <Send size={16} />
+                Send me an email (Gmail) <Send size={16} />
               </a>
               <button className="button button-quiet" onClick={copyEmail}>
                 {copied ? "Email copied!" : "Copy email address"} <FileText size={16} />
@@ -1304,7 +1320,12 @@ function App() {
               <a href={profile.linkedin} target="_blank" rel="noreferrer">
                 <Linkedin size={17} /> LinkedIn <ArrowUpRight size={13} />
               </a>
-              <a href={`mailto:${profile.email}`}>
+              <a
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}`}
+                target="_blank"
+                rel="noreferrer noopener"
+                title="Compose in Gmail"
+              >
                 <Mail size={17} /> {profile.email}
               </a>
             </div>
@@ -1417,10 +1438,12 @@ function App() {
                 <Download size={14} /> Download PDF
               </a>
               <a
-                href={`mailto:${profile.email}?subject=Request%20for%20Resume%20-%20Jyothi%20Radhithya`}
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(profile.email)}&su=${encodeURIComponent("Request for Resume - Jyothi Radhithya")}`}
+                target="_blank"
+                rel="noreferrer noopener"
                 className="button button-quiet btn-sm"
               >
-                <Mail size={14} /> Request via Email
+                <Mail size={14} /> Request via Gmail
               </a>
               <button
                 className="button button-quiet btn-sm"
