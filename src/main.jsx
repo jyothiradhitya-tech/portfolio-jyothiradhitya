@@ -776,6 +776,7 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
+                title="GitHub: jyothiradhitya-tech"
               >
                 <Github size={18} />
               </a>
@@ -784,12 +785,26 @@ function App() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
+                title="LinkedIn: jyothi-radhithya"
               >
                 <Linkedin size={18} />
               </a>
-              <a href={`mailto:${profile.email}`} aria-label="Email">
-                <Mail size={18} />
+              <a
+                href={`mailto:${profile.email}`}
+                className="email-pill-badge"
+                title="Send email directly"
+              >
+                <Mail size={15} />
+                <span>{profile.email}</span>
               </a>
+              <button
+                className="email-copy-pill"
+                onClick={copyEmail}
+                title="Copy email to clipboard"
+              >
+                <FileText size={13} />
+                <span>{copied ? "Copied!" : "Copy"}</span>
+              </button>
               <span className="social-divider" />
               <span className="location">
                 <MapPin size={14} /> {profile.location}

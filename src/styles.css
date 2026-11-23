@@ -338,13 +338,57 @@ button {
 .social-row {
   display: flex;
   align-items: center;
-  gap: 19px;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 32px;
   color: #5a777c;
 }
 
 .social-row a {
   transition: color 0.2s;
+}
+
+.email-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(13, 79, 87, 0.08);
+  border: 1px solid rgba(13, 79, 87, 0.16);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #082126 !important;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.email-pill-badge:hover {
+  background: #082126;
+  color: #faf7f2 !important;
+  border-color: #082126;
+  transform: translateY(-1px);
+}
+
+.email-copy-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid rgba(13, 79, 87, 0.2);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #082126;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.email-copy-pill:hover {
+  background: rgba(232, 93, 69, 0.12);
+  border-color: #e85d45;
+  color: #e85d45;
 }
 
 .social-divider {
